@@ -1,5 +1,5 @@
 {
-  "name": "google-books-search",
+  "name": "homework-21",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -7,6 +7,19 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rachelrohrbach/google-books-search.git"
+  },
   "author": "rachel rohrbach",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rachelrohrbach/google-books-search/issues"
+  },
+  "homepage": "https://github.com/rachelrohrbach/google-books-search#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.10"
+  }
 }
