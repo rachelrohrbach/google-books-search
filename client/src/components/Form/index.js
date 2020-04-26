@@ -4,7 +4,7 @@ import React from 'react';
 export function Input(props) {
   return (
     <div className="form-group" style={{ marginTop: 30, marginRight: 30, marginBottom: 10 }}>
-      <input className="form-control" {...props} />
+      <input className="form-control" {...props}/>
     </div>
   );
 }

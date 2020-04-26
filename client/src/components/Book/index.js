@@ -9,7 +9,6 @@ function Book(props) {
       <Row className="flex-wrap-reverse">
         <Col size="md-8" key={props.id}>
           <h3 className="font-italic">{props.title}</h3>
-          {props.subtitle && <h5 className="font-italic">{props.subtitle}</h5>}
         </Col>
         <Col size="md-4">
           <div className="btn-container">
@@ -28,8 +27,8 @@ function Book(props) {
         </Col>
       </Row>
       <Row>
-        <Col size="md-6">
-          <p className="font-italic small">Written by {props.authors ? props.authors.join(',') : "Unknown author"}</p>
+        <Col size="md-8">
+          <h5 className="font-italic">Written by {props.authors ? props.authors.join(`, `) : "Unknown author"}</h5>
         </Col>
       </Row>
       <Row>

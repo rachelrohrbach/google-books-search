@@ -5,6 +5,11 @@
 .btn {
     font-size: larger;
 }
+
+.font-italic,
+p {
+  text-align: left;
+}
   
   @media (max-width: 767px) {
     .btn-container {
