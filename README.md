@@ -10,7 +10,7 @@
 ## General Information
 This application is React-based Google Books Search app. It is a full-stack application using the MERN (MongoDB, Express, React, Node) stack.  You can search for books using the Google Books API by typing in a book title and clicking on "Search". From the results the user can click "View" to navigate to the book on the Google Play Store or click "Save" to save the book to the database. They can view the books they've saved on the Save Page and also delete them from the saved list.  
 
-You can view the deployed application here: 
+You can view the deployed application here: https://fast-tundra-68220.herokuapp.com/
 
 Alternatively, the application can be run locally by cloning the repository and then running following command in the terminal to install the dependencies required:
 ```sh
