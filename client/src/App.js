@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Nav from './components/Nav';
-import Search from './pages/Search';
+import Home from './pages/Home';
 import Saved from './pages/Saved';
 
 function App() {
@@ -11,8 +11,8 @@ function App() {
       <div className="App">
         <Nav />
         <Switch>
-          <Route exact path="/" component={Search} />
-          <Route exact path="/search" component={Search} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/search" component={Home} />
           <Route exact path="/saved" component={Saved} />
         </Switch>
       </div>

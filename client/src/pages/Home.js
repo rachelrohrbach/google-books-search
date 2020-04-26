@@ -3,11 +3,11 @@ import API from '../utils/API';
 import Hero from '../components/Hero';
 import { FormBtn, Input } from '../components/Form';
 import { Col, Container, Row } from '../components/Grid';
-import { List, ListItem } from '../components/List';
+import { List } from '../components/List';
 import Book from '../components/Book';
 import Card from '../components/Card';
 
-function Search() {
+function Home() {
   // Setting our component's initial state
   const [books, setBooks] = useState([]);
   const [query, setQuery] = useState('');
@@ -32,22 +32,17 @@ function Search() {
   function saveBook(bookId) {
     const book = books.find((book) => book.id === bookId);
 
-    console.log(book);
-
     API.saveBook({
-        id: book.id,
-        title: book.volumeInfo.title,
-        author: book.volumeInfo.authors[0],
-        description: book.volumeInfo.description,
-        image: "image",
-        link: "link"
+      title: book.volumeInfo.title,
+      author: book.volumeInfo.authors[0],
+      description: book.volumeInfo.description,
+      image: book.volumeInfo.imageLinks.thumbnail,
+      link: book.volumeInfo.infoLink,
     })
       .then((res) => {
-        console.log(res.data.config);
         if (res.data.status === 'error') {
           throw new Error(res.data.message);
         }
-        console.log(res.data.config);
       })
       .catch((err) => console.log(err.response));
   }
@@ -59,7 +54,11 @@ function Search() {
         <Col size="md-12">
           <Card title="Book Search" icon="far fa-book">
             <form>
-              <Input onChange={handleInputChange} name="title" placeholder="" />
+              <Input
+                onChange={handleInputChange}
+                name="title"
+                placeholder="Harry Potter"
+              />
               <FormBtn onClick={handleFormSubmit}>Search</FormBtn>
             </form>
           </Card>
@@ -71,21 +70,17 @@ function Search() {
             {books.length ? (
               <List>
                 {books.map((book) => (
-                  <ListItem key={book.id}>
-                    <Book
-                      title={book.volumeInfo.title}
-                      authors={book.volumeInfo.authors}
-                      subtitle={book.volumeInfo.subtitle}
-                      description={book.volumeInfo.description}
-                      image={book.volumeInfo.imageLinks.thumbnail}
-                      link={book.volumeInfo.infoLink}
-                      onSubmit={() => 
-                        saveBook(book.id)
-                      }
-                      submitLabel="Save"
-                      submitBtnClassName="btn btn-primary"
-                    ></Book>
-                  </ListItem>
+                  <Book
+                    key={book.id}
+                    title={book.volumeInfo.title}
+                    authors={book.volumeInfo.authors}
+                    description={book.volumeInfo.description}
+                    image={book.volumeInfo.imageLinks.thumbnail}
+                    link={book.volumeInfo.infoLink}
+                    onSubmit={() => saveBook(book.id)}
+                    submitLabel="Save"
+                    submitBtnClassName="btn btn-primary"
+                  ></Book>
                 ))}
               </List>
             ) : (
@@ -98,4 +93,4 @@ function Search() {
   );
 }
 
-export default Search;
+export default Home;
