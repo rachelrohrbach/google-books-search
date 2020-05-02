@@ -43,7 +43,7 @@ function Saved() {
                     authors={book.author.join(', ')}
                     description={book.description}
                     image={book.image}
-                    link={book.info}
+                    link={book.link}
                     onSubmit={() => deleteBook(book._id)}
                     submitLabel='Delete'
                     submitBtnClassName='btn btn-danger'
