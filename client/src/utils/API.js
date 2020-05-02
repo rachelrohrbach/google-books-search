@@ -6,7 +6,7 @@ export default {
   },
 
   getSavedBooks: function () {
-    return axios.get('./api/books');
+    return axios.get('/api/books');
   },
 
   getBook: function (id) {
