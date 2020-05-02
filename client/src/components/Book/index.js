@@ -28,7 +28,7 @@ function Book(props) {
       </Row>
       <Row>
         <Col size="md-8">
-          <h5 className="font-italic">Written by {props.authors ? props.authors.join(`, `) : "Unknown author"}</h5>
+          <h5 className="font-italic">Written by {props.authors}</h5>
         </Col>
       </Row>
       <Row>
