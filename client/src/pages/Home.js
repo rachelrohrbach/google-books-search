@@ -24,17 +24,7 @@ function Home() {
 
     API.getBooks(query)
       .then((res) => {
-        const books = res.data.items.map((book) => ({
-          id: book.id,
-          title: book.volumeInfo.title,
-          author: book.volumeInfo.authors,
-          description: book.volumeInfo.description,
-          image: book.volumeInfo.imageLinks
-            ? book.volumeInfo.imageLinks.thumbnail
-            : '',
-          link: book.volumeInfo.infoLink,
-        }));
-        setBooks(books);
+        setBooks(res.data);
       })
       .catch((err) => console.error(err));
   }
@@ -43,11 +33,11 @@ function Home() {
     const book = books.find((book) => book.id === bookId);
 
     API.saveBook({
-      title: book.title,
-      author: book.authors,
-      description: book.description,
-      image: book.image,
-      link: book.link,
+      title: book.volumeInfo.title,
+      author: book.volumeInfo.authors[0],
+      description: book.volumeInfo.description,
+      image: book.volumeInfo.imageLinks.thumbnail,
+      link: book.volumeInfo.infoLink,
     })
       .then((res) => {
         if (res.data.status === 'error') {
@@ -82,11 +72,11 @@ function Home() {
                 {books.map((book) => (
                   <Book
                     key={book.id}
-                    title={book.title}
-                    authors={book.author.join(', ')}
-                    description={book.description}
-                    image={book.image}
-                    link={book.link}
+                    title={book.volumeInfo.title}
+                    authors={book.volumeInfo.authors}
+                    description={book.volumeInfo.description}
+                    image={book.volumeInfo.imageLinks.thumbnail}
+                    link={book.volumeInfo.infoLink}
                     onSubmit={() => saveBook(book.id)}
                     submitLabel='Save'
                     submitBtnClassName='btn btn-primary'
