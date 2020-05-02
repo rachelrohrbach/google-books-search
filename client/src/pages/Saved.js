@@ -32,21 +32,21 @@ function Saved() {
     <Container fluid>
       <Hero />
       <Row>
-        <Col size="md-12">
-          <Card title="Saved Books">
+        <Col size='md-12'>
+          <Card title='Saved Books'>
             {books.length ? (
               <List>
                 {books.map((book) => (
                   <Book
                     key={book._id}
                     title={book.title}
-                    authors={book.authors}
+                    authors={book.author.join(', ')}
                     description={book.description}
                     image={book.image}
                     link={book.info}
                     onSubmit={() => deleteBook(book._id)}
-                    submitLabel="Delete"
-                    submitBtnClassName="btn btn-danger"
+                    submitLabel='Delete'
+                    submitBtnClassName='btn btn-danger'
                   ></Book>
                 ))}
               </List>

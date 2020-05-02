@@ -24,7 +24,17 @@ function Home() {
 
     API.getBooks(query)
       .then((res) => {
-        setBooks(res.data.items);
+        const books = res.data.items.map((book) => ({
+          id: book.id,
+          title: book.volumeInfo.title,
+          author: book.volumeInfo.authors,
+          description: book.volumeInfo.description,
+          image: book.volumeInfo.imageLinks
+            ? book.volumeInfo.imageLinks.thumbnail
+            : '',
+          link: book.volumeInfo.infoLink,
+        }));
+        setBooks(books);
       })
       .catch((err) => console.error(err));
   }
@@ -33,11 +43,11 @@ function Home() {
     const book = books.find((book) => book.id === bookId);
 
     API.saveBook({
-      title: book.volumeInfo.title,
-      author: book.volumeInfo.authors[0],
-      description: book.volumeInfo.description,
-      image: book.volumeInfo.imageLinks.thumbnail,
-      link: book.volumeInfo.infoLink,
+      title: book.title,
+      author: book.authors,
+      description: book.description,
+      image: book.image,
+      link: book.link,
     })
       .then((res) => {
         if (res.data.status === 'error') {
@@ -51,13 +61,13 @@ function Home() {
     <Container fluid>
       <Hero />
       <Row>
-        <Col size="md-12">
-          <Card title="Book Search" icon="far fa-book">
+        <Col size='md-12'>
+          <Card title='Book Search' icon='far fa-book'>
             <form>
               <Input
                 onChange={handleInputChange}
-                name="title"
-                placeholder="Harry Potter"
+                name='title'
+                placeholder='Harry Potter'
               />
               <FormBtn onClick={handleFormSubmit}>Search</FormBtn>
             </form>
@@ -65,21 +75,21 @@ function Home() {
         </Col>
       </Row>
       <Row>
-        <Col size="md-12">
-          <Card title="Results">
+        <Col size='md-12'>
+          <Card title='Results'>
             {books.length ? (
               <List>
                 {books.map((book) => (
                   <Book
                     key={book.id}
-                    title={book.volumeInfo.title}
-                    authors={book.volumeInfo.authors}
-                    description={book.volumeInfo.description}
-                    image={book.volumeInfo.imageLinks.thumbnail}
-                    link={book.volumeInfo.infoLink}
+                    title={book.title}
+                    authors={book.author.join(', ')}
+                    description={book.description}
+                    image={book.image}
+                    link={book.link}
                     onSubmit={() => saveBook(book.id)}
-                    submitLabel="Save"
-                    submitBtnClassName="btn btn-primary"
+                    submitLabel='Save'
+                    submitBtnClassName='btn btn-primary'
                   ></Book>
                 ))}
               </List>
