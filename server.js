@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === `production`) {
 
 app.use(routes);
 
-mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost/reactreadinglist`, {
+mongoose.connect(process.env.MONGO_CONNECTION || `mongodb://localhost/reactreadinglist`, {
 useUnifiedTopology: true,
 useNewUrlParser: true,
 useCreateIndex: true
